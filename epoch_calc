@@ -1,0 +1,22 @@
+#!/usr/bin/python
+
+import pandas as pd
+
+file=open('udpserver-1-1.txt')
+line=file.readlines()
+
+line=line[9:]
+line=[i.split('\t',7)[7] for i in line]
+df=pd.DataFrame(line)
+df = df[0].str.strip('\n')
+df.to_csv("transform.csv")
+
+cols = list(pd.read_csv("transform.csv", nrows =1))
+df = pd.read_csv("transform.csv",  usecols =[i for i in cols if i != '0'])
+difference = df.diff(axis=0)
+value_float = difference["ArrTime"]*1000000
+value_null = value_float.fillna(0)
+value_round = value_null.round()
+value_us = value_round.astype('int64')
+value_us.to_csv("transform.csv")
+
