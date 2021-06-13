@@ -16,7 +16,7 @@ except Exception as e:
     pass
 outfile=open('./data_rates.csv','w')
 writer=csv.writer(outfile)
-writer.writerow(["SNo", "sec", "Mbps"])
+writer.writerow(["SNo", "usec", "Mbps"])
 writer.writerows(mylist)
 
 print '\n Done extracting data rates! Please check the data_rates.csv file'
