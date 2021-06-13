@@ -6,6 +6,7 @@ help:
 	    @echo "make calculate" - Calculates all data rates
 		@echo ""
 		@echo "make" - Converts and calculates the data rates
+		@echo ""
 
 .PHONY: convert calculate all
 
