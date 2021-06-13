@@ -20,3 +20,5 @@ value_round = value_null.round()
 value_us = value_round.astype('int64')
 value_us.to_csv("transform.csv")
 
+print '\n Done converting delta times for all the packets arrival times! Now run 2_run script for getting data rates.'
+

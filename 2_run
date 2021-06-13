@@ -1,0 +1,20 @@
+#!/usr/bin/python
+
+import csv
+f = open('transform.csv', 'r')
+reader = csv.reader(f)
+mylist = list(reader)
+f.close()
+i=1
+try:
+    while True:
+        x=1024/int(mylist[i][1])
+        mylist[i].append(str(x)+ " Mbps")
+        i+=1
+except Exception as e:
+    pass
+outfile=open('./data_rates.csv','w')
+writer=csv.writer(outfile)
+writer.writerow(["SNo", "sec", "Mbps"])
+writer.writerows(mylist)
+print '\n Done extracting data rates! Please check the data_rates.csv file'
