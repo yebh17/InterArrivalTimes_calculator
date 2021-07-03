@@ -1,3 +1,2 @@
-pandas
-matplotlib.pyplot
-matplotlib.ticker
+pandas==0.24.2
+matplotlib==1.3.1
