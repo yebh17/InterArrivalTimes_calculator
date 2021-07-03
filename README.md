@@ -11,3 +11,5 @@ A simple project to calculate the udp data rates from the raw outputs gathered f
 - `make`
 
 Now you can see the data rates in data_rates.csv file
+
+NOTE: The plots are done in seconds units, if wanted graphs in microseconds follow the comments mentioned in plot python file.

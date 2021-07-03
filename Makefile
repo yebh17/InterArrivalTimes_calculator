@@ -5,10 +5,12 @@ help:
 		@echo ""
 	    @echo "make calculate" - Calculates all data rates
 		@echo ""
+		@echo "make plot" - Plots garphs for the data rates
+		@echo ""
 		@echo "make" - Converts and calculates the data rates
 		@echo ""
 
-.PHONY: convert calculate all
+.PHONY: convert calculate plot all
 
 .DEFAULT_GOAL := all
 
@@ -20,5 +22,9 @@ convert:
 calculate:
 	@./2_run
 
+#Goal for plotting all data rates
+plot:
+	@./plot
+
 #Goal for doing both
-all: convert calculate
+all: convert calculate plot
