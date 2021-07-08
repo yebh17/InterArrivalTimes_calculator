@@ -21,7 +21,7 @@ with open('data_rates_sec.csv','r') as csvfile:
 plt.scatter(x, y, label='1024 Bytes = 8192 bits\nPlots are as (No. of bits) per (time taken)')
 
 #Uncomment this line if wanted graphs in seconds
-plt.axis([0.0000101,0.000052,8150,8200])
+# plt.axis([0.0000101,0.000052,8150,8200])
 
 #Uncomment this line if wanted graphs in microseconds
 # plt.axis([0,60,8150,8200])
@@ -30,4 +30,5 @@ plt.xlabel('Time')
 plt.ylabel('bits')
 plt.title('BITRATE\npackets(bits) Vs Time')
 plt.legend()
+plt.gcf().autofmt_xdate()
 plt.show()
