@@ -5,15 +5,11 @@ import os
 import pandas as pd
 import csv
 def convers():
-    #os.chdir(r'directory where the files are located')
     myFiles = glob.glob('*.txt')
     a=0
-    # try:
     for i in range(len(myFiles)):
         file=open(myFiles[a])
-        # print(myFiles[a][:9])
         line=file.readlines()
-        # print(line)
         line=line[10:]
         line=[i.split('\t',7)[7] for i in line]
         df=pd.DataFrame(line)
@@ -48,20 +44,13 @@ def convers():
         outfile=open(f'./results_{myFiles[a][:9]}.csv','w')
         writer=csv.writer(outfile)
         writer.writerows(mylist[1:])
-        #print(mylist_sec)
-        #print(mylist_sec)
         a+=1
-    # except Exception as e:
-    #     pass
-    #     print ('\n Done extracting data rates! Please check the data_rates.csv file')
 os.chdir('convShaper2_cerberus')
 p=os.listdir()
-print(p)
 c=0
 for i in range(len(p)):
     try:
         os.chdir(p[c])
-        print(os.getcwd())
         c=c+1
         convers()
     except NotADirectoryError:
@@ -73,12 +62,10 @@ for i in range(len(p)):
 os.chdir('..')
 os.chdir('convShaper2_convSrc3')
 p=os.listdir()
-print(p)
 d=0
 for i in range(len(p)):
     try:
         os.chdir(p[d])
-        print(os.getcwd())
         d+=1
         convers()
     except NotADirectoryError:
@@ -91,12 +78,10 @@ os.chdir('..')
 os.chdir('convSrc3_cerberus')
 
 p=os.listdir()
-print(p)
 e=0
 for i in range(len(p)):
     try:
         os.chdir(p[e])
-        print(os.getcwd())
         e+=1
         convers()
     except NotADirectoryError:
@@ -104,4 +89,5 @@ for i in range(len(p)):
     except FileNotFoundError:
         pass
     os.chdir('..')
+print("Done! Check the results in the respective directories")
     
