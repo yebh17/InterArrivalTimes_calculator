@@ -27,10 +27,10 @@ def convers():
         f = open(f'results_{myFiles[a][:9]}.csv', 'r')
         reader = csv.reader(f)
         mylist = list(reader)
+        bytes_to_bits=1024*8
         g=float(line[0])
         o=str(g)
-        bytes_to_bits=1024*8
-        mylist[1]=[0,o[11:], str(bytes_to_bits), float(8192/int(o[11:]))]
+        mylist[1]=[0,0,0,0]
         f.close()
         i=2
         try:
