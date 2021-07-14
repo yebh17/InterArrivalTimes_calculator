@@ -1,0 +1,28 @@
+#!/usr/bin/python
+
+from matplotlib import mlab
+import matplotlib.pyplot as plt
+import numpy as np
+import csv
+
+x = []
+y = []
+
+# /Users/sunny/datarates_calculator/convShaper2_cerberus/week_27/results_mon_10_00.csv
+# /Users/sunny/datarates_calculator/convShaper2_convSrc3/week_27/results_mon_10_00.csv
+# /Users/sunny/datarates_calculator/convSrc3_cerberus/week_27/results_mon_10_00.csv
+
+with open('/Users/sunny/datarates_calculator/convSrc3_cerberus/week_27/results_mon_10_00.csv','r') as csvfile:
+    plots = csv.reader(csvfile, delimiter=',')
+    for row in plots:
+        #Time in us
+        x.append(row[0])
+        #packets in bits
+        y.append(row[1])
+
+plt.plot(x, y, linestyle='solid')
+plt.xlabel('seq.no')
+plt.ylabel('Inter-arrival times')
+plt.title('Plot1')
+plt.savefig('convSrc3_cerberus.png')
+plt.show()
