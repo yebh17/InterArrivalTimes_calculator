@@ -40,7 +40,6 @@ def graph_plot():
         plt.clf()
         a+=1
 os.chdir('convShaper2_cerberus')
-print(os.getcwd())
 p=os.listdir(os.getcwd())
 c=0
 for i in range(len(p)):
@@ -84,4 +83,4 @@ for i in range(len(p)):
     except FileNotFoundError:
         pass
     os.chdir('..')
-print("Done! Check the results in the respective directories")
+print("INFO: Done with the Percentile graphs, check them in the respective directories")

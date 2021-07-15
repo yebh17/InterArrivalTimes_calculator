@@ -4,6 +4,8 @@ import glob
 import os
 import pandas as pd
 import csv
+
+print("INFO: Started calculations...\n")
 def convers():
     myFiles = glob.glob('*.txt')
     a=0
@@ -28,11 +30,12 @@ def convers():
         reader = csv.reader(f)
         mylist = list(reader)
         bytes_to_bits=1024*8
-        relative_time=0
-        pkt1_arr_time=float(line[0])
-        pkt1_inter_arr_time=pkt1_arr_time-relative_time
-        pkt1_inter_arr_time=str(pkt1_inter_arr_time)
-        mylist[1]=[0,pkt1_inter_arr_time[11:], bytes_to_bits, float(8192/int(pkt1_inter_arr_time[11:]))]
+        mylist[1]=[0,0,0,0]
+        # relative_time=0
+        # pkt1_arr_time=float(line[0])
+        # pkt1_inter_arr_time=pkt1_arr_time-relative_time
+        # pkt1_inter_arr_time=str(pkt1_inter_arr_time)
+        # mylist[1]=[0,pkt1_inter_arr_time[11:], bytes_to_bits, float(8192/int(pkt1_inter_arr_time[11:]))]
         f.close()
         i=2
         try:
@@ -92,5 +95,5 @@ for i in range(len(p)):
     except FileNotFoundError:
         pass
     os.chdir('..')
-print("Done! Check the results in the respective directories")
+print("INFO: Done with the calculations, check results in the respective directories\n\nINFO: Now creating the graphs...\n")
     
