@@ -17,7 +17,7 @@ def graph_plot():
             plots = csv.reader(csvfile, delimiter=',')
             for row in plots:
                 #Time in us
-                x.append(row[1])
+                x.append(row[0])
                 #packets in bits
                 y.append(row[1])
                 
@@ -25,8 +25,9 @@ def graph_plot():
         plt.xlabel('seq.no')
         plt.ylabel('Inter-arrival times')
         plt.title('Plot1')
-        plt.savefig(f'{myFiles[a]}.png')
-        plt.show()
+        plt.savefig(f'a_{myFiles[a]}.png')
+        #plt.show()
+        plt.clf()
         a+=1
 # /Users/sunny/datarates_calculator/convShaper2_cerberus/week_27/results_mon_10_00.csv
 # /Users/sunny/datarates_calculator/convShaper2_convSrc3/week_27/results_mon_10_00.csv

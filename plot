@@ -36,7 +36,8 @@ def graph_plot():
         plt.xticks((len(d)-1) * p/100., map(str, p))
         plt.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)
         plt.savefig(f'{myFiles[a]}_percentile.png')
-        plt.show()
+        # plt.show()
+        plt.clf()
         a+=1
 os.chdir('convShaper2_cerberus')
 print(os.getcwd())
