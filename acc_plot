@@ -20,18 +20,15 @@ def graph_plot():
                 x.append(row[0])
                 #packets in bits
                 y.append(row[1])
-                
-        plt.plot(x, y, linestyle='solid')
+
+        plt.scatter(x, y)
         plt.xlabel('seq.no')
         plt.ylabel('Inter-arrival times')
-        plt.title('Plot1')
-        plt.savefig(f'a_{myFiles[a]}.png')
-        #plt.show()
+        plt.savefig(f'{myFiles[a]}.png')
+        plt.locator_params(axis='y', nbins=5000)
+        plt.locator_params(axis='x', nbins=5000)
         plt.clf()
         a+=1
-# /Users/sunny/datarates_calculator/convShaper2_cerberus/week_27/results_mon_10_00.csv
-# /Users/sunny/datarates_calculator/convShaper2_convSrc3/week_27/results_mon_10_00.csv
-# /Users/sunny/datarates_calculator/convSrc3_cerberus/week_27/results_mon_10_00.csv
 os.chdir('convShaper2_cerberus')
 p=os.listdir(os.getcwd())
 c=0
