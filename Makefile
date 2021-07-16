@@ -8,14 +8,18 @@ help:
 		@echo "make plot" - Plots garphs for the data rates
 		@echo ""
 
-.PHONY: calculate plot all
+.PHONY: calculate percentile_plot accuracy_plot all
 .SILENT:clean
 
 .DEFAULT_GOAL := all
 
-#Goal for plotting all data rates
-plot:
-	@./plot
+#Goal for plotting percentiles
+percentile_plot:
+	@./percentile_plot
+
+#Goal for plotting accuracy
+accuracy_plot:
+	@./accuracy_plot
 
 #Goal for calculating all data rates
 calculate:
@@ -31,4 +35,4 @@ clean:
 	for FILE in ${convSrc3_cerberus}; do rm $$FILE ; done
 
 #Goal for doing both
-all: clean calculate plot
+all: clean calculate percentile_plot accuracy_plot
