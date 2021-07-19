@@ -31,6 +31,8 @@ def graph_plot():
         plt.plot(d, color='green', linewidth=2)
         # Place red dots on the percentiles
         plt.plot((len(d)-1) * p/100., perc, 'ro')
+        # t=(len(d)-1) * p/100.
+        # plt.text(p[1], t[1], 'foo', fontsize=12)
 
         # Set tick locations and labels
         plt.xticks((len(d)-1) * p/100., map(str, p))
