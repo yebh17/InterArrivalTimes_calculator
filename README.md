@@ -10,3 +10,5 @@ A simple project to calculate the udp data rates from the raw outputs gathered f
 - `cd datarates_calculator`
 - `pip3 install -r requirements.txt`
 - `make`
+
+Note: You can use `make help` if wanted to check all the different commands available.
