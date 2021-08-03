@@ -15,8 +15,11 @@ def graph_plot():
         with open(myFiles[a],'r') as csvfile:
             plots = csv.reader(csvfile, delimiter=',')
             for row in plots:
-                #Time in us
-                x.append(row[1])
+                try:
+                    #Time in us
+                    x.append(row[1])
+                except Exception:
+                    pass
             
 
         d = np.array(x, dtype='S32')
@@ -30,10 +33,12 @@ def graph_plot():
 
         plt.plot(d, color='green', linewidth=2)
         # Place red dots on the percentiles
-        plt.plot((len(d)-1) * p/100., perc, 'ro')
+        o=(len(d)-1) * p/100.
+        plt.plot(o, perc, 'ro')
         # t=(len(d)-1) * p/100.
         # plt.text(p[1], t[1], 'foo', fontsize=12)
-
+        for r,b in zip(o, perc): 
+            plt.text(r, b, "----->"+str(b))
         # Set tick locations and labels
         plt.xticks((len(d)-1) * p/100., map(str, p))
         plt.gcf().axes[0].yaxis.get_major_formatter().set_scientific(False)

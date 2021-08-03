@@ -1,11 +1,15 @@
 #Help text to display make goals
 help:
 		@echo ""
-		@echo "make" - calculates and plots the data rates
+		@echo "make" - calculates all the IAT's and then plots all the graphs and saved in their respective directories.
 		@echo ""
-		@echo "make calculate" - calculates the data rates
+		@echo "make calculate" - Only calculates all the IAT's and saved as a files as results_<day_hour_min>.csv
 		@echo ""
-		@echo "make plot" - Plots garphs for the data rates
+		@echo "make percentile_plot" - Only plots graphs for the percentiles(0, 25, 50, 75) of IAT's, the images will be saved as results_<day_hour_min>.csv_percentile.png
+		@echo ""
+		@echo "make accuracy_plot" - Only plots graphs for the "seq no. Vs IAT's", the images will be saved as results_<day_hour_min>.csv.png
+		@echo ""
+		@echo "make clean" - cleans all the calculated IAT's files and graph images. Simply gives you a clean repo.
 		@echo ""
 
 .PHONY: calculate percentile_plot accuracy_plot all
