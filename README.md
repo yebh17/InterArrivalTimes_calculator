@@ -13,4 +13,6 @@ A simple application to calculate the Inter-arrival times from the raw outputs g
 
 You can use `make clean` for cleaning all the generated files and get back a fresh repo.
 
-Note: You can use `make help` if wanted to check all the different commands available.
+You can use `make help` if wanted to check all the different commands available.
+
+NOTE: This application only runs in linux
