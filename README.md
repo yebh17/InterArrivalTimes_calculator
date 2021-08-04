@@ -6,8 +6,8 @@ A simple application to calculate the Inter-arrival times from the raw outputs g
 
 ## Steps
 
-- `git clone https://github.com/yebh17/datarates_calculator.git`
-- `cd datarates_calculator`
+- `git clone https://github.com/yebh17/InterArrivalTimes_calculator.git`
+- `cd InterArrivalTimes_calculator`
 - `pip3 install -r requirements.txt`
 - `make`
 
