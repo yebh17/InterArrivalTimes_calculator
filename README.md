@@ -8,7 +8,7 @@ A simple application to calculate the Inter-arrival times from the raw outputs g
 
 - `git clone https://github.com/yebh17/InterArrivalTimes_calculator.git`
 - `cd InterArrivalTimes_calculator`
-- `make`
+- `./initialize && make`
 
 You can use `make clean` for cleaning all the generated files and get back a fresh repo.
 

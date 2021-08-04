@@ -1,8 +1,6 @@
 #Help text to display make goals
 help:
 		@echo ""
-		@echo "make initialize" - Just checks for all the installations are present or not and also installs all required python libraries.
-		@echo ""
 		@echo "make" - calculates all the IAT\'s and then plots all the graphs and saved in their respective directories.
 		@echo ""
 		@echo "make calculate" - Only calculates all the IAT\'s and saved as a files as results_\<day_hour_min\>.csv
@@ -14,14 +12,10 @@ help:
 		@echo "make clean" - cleans all the calculated IAT\'s files and graph images. Simply gives you a clean repo.
 		@echo ""
 
-.PHONY: initialize calculate percentile_plot accuracy_plot all
+.PHONY: calculate percentile_plot accuracy_plot all
 .SILENT:clean
 
 .DEFAULT_GOAL := all
-
-#Goal for checking all the installations and also installs required python3 libraries
-initialize:
-	@./initialize
 
 #Goal for plotting IAT's percentiles
 percentile_plot:
@@ -45,4 +39,4 @@ clean:
 	for FILE in ${convSrc3_cerberus}; do rm $$FILE ; done
 
 #Goal for running all goals
-all: clean initialize calculate percentile_plot
+all: clean calculate percentile_plot
