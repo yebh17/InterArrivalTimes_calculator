@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Check for Python3 installation
+if ! command -v python3 &> /dev/null
+then
+    echo ""
+    echo "ERROR: python3 is not available, please install python3"
+    echo ""
+    exit
+else
+    echo ""
+    echo "INFO: OK! python3 is available!"
+    echo ""
+fi
+
+# Check for pip3 installation
+if ! command -v pip3 &> /dev/null
+then
+    echo ""
+    echo "ERROR: pip3 is not available, please install pip3"
+    echo ""
+    exit
+else
+    echo ""
+    echo "INFO: OK! pip3 is available!"
+    echo ""
+fi
+
+# Check for Make installation
+if ! command -v make &> /dev/null
+then
+    echo ""
+    echo "ERROR: Make is not available, please install Make"
+    echo ""
+    exit
+else
+    echo ""
+    echo "INFO: OK! Make is available!"
+    echo ""
+fi
+
+# Install all required libraries
+echo ""
+echo "INFO: Installing all required libraries"
+echo ""
+pip3 install -r requirements.txt
+echo ""
