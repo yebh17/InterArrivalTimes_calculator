@@ -8,7 +8,6 @@ A simple application to calculate the Inter-arrival times from the raw outputs g
 
 - `git clone https://github.com/yebh17/InterArrivalTimes_calculator.git`
 - `cd InterArrivalTimes_calculator`
-- `pip3 install -r requirements.txt`
 - `make`
 
 You can use `make clean` for cleaning all the generated files and get back a fresh repo.
