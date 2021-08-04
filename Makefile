@@ -1,6 +1,8 @@
 #Help text to display make goals
 help:
 		@echo ""
+		@echo "make initialize" - Just checks for all the installations are present or not and also installs all required python libraries.
+		@echo ""
 		@echo "make" - calculates all the IAT\'s and then plots all the graphs and saved in their respective directories.
 		@echo ""
 		@echo "make calculate" - Only calculates all the IAT\'s and saved as a files as results_\<day_hour_min\>.csv
@@ -17,19 +19,19 @@ help:
 
 .DEFAULT_GOAL := all
 
-#Goal for calculating all data rates
+#Goal for checking all the installations and also installs required python3 libraries
 initialize:
 	@./initialize
 
-#Goal for plotting percentiles
+#Goal for plotting IAT's percentiles
 percentile_plot:
 	@./percentile_plot
 
-#Goal for plotting accuracy
+#Goal for plotting "seq no. Vs IAT's"
 accuracy_plot:
 	@./accuracy_plot
 
-#Goal for calculating all data rates
+#Goal for calculating all IAT's
 calculate:
 	@./calculate
 
@@ -42,5 +44,5 @@ clean:
 	for FILE in ${convShaper2_convSrc3}; do rm $$FILE ; done
 	for FILE in ${convSrc3_cerberus}; do rm $$FILE ; done
 
-#Goal for doing both
+#Goal for running all goals
 all: clean initialize calculate percentile_plot
