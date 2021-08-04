@@ -7,6 +7,7 @@ import csv
 import glob
 import os
 
+print("INFO: Now creating the percentile graphs...\n")
 def graph_plot():
     x = []
     myFiles = glob.glob('*.csv')
@@ -91,4 +92,4 @@ for i in range(len(p)):
     except FileNotFoundError:
         pass
     os.chdir('..')
-print("INFO: Done with the Percentile graphs, check them in the respective directories\n\nINFO: Now creating the accuracy graphs...")
+print("INFO: Done with the Percentile graphs, check them in the respective directories\n")

@@ -95,5 +95,5 @@ for i in range(len(p)):
     except FileNotFoundError:
         pass
     os.chdir('..')
-print("INFO: Done with the calculations, check results in the respective directories\n\nINFO: Now creating the percentile graphs...\n")
+print("INFO: Done with the calculations, check results in the respective directories\n")
     

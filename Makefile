@@ -12,10 +12,14 @@ help:
 		@echo "make clean" - cleans all the calculated IAT\'s files and graph images. Simply gives you a clean repo.
 		@echo ""
 
-.PHONY: calculate percentile_plot accuracy_plot all
+.PHONY: initialize calculate percentile_plot accuracy_plot all
 .SILENT:clean
 
 .DEFAULT_GOAL := all
+
+#Goal for calculating all data rates
+initialize:
+	@./initialize
 
 #Goal for plotting percentiles
 percentile_plot:
@@ -39,4 +43,4 @@ clean:
 	for FILE in ${convSrc3_cerberus}; do rm $$FILE ; done
 
 #Goal for doing both
-all: clean calculate percentile_plot accuracy_plot
+all: clean initialize calculate percentile_plot
