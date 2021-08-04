@@ -4,7 +4,7 @@
 if ! command -v python3 &> /dev/null
 then
     echo ""
-    echo "ERROR: python3 is not available, please install python3"
+    echo "ERROR: python3 is not available, please install python3 with, 'sudo apt install python3.8'"
     echo ""
     exit
 else
@@ -17,7 +17,7 @@ fi
 if ! command -v pip3 &> /dev/null
 then
     echo ""
-    echo "ERROR: pip3 is not available, please install pip3"
+    echo "ERROR: pip3 is not available, please install pip3 with, 'sudo apt-get install python3-pip'"
     echo ""
     exit
 else
@@ -27,10 +27,10 @@ else
 fi
 
 # Check for Make installation
-if ! command -v make &> /dev/null
+if ! command -v makse &> /dev/null
 then
     echo ""
-    echo "ERROR: Make is not available, please install Make"
+    echo "ERROR: Make is not available, please install Make with, 'sudo apt-get install build-essential'"
     echo ""
     exit
 else
