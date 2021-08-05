@@ -2,7 +2,7 @@
 
 ## About the application
 
-A simple application to calculate the Inter-arrival times from the raw outputs gathered from DPMI/trafficgenerators and plot graphs for the "Inter-arrival times percentiles" and also "Seq no. Vs Inter-arrival times".
+A simple application to calculate the Inter-arrival times from the raw outputs gathered from [DPMI/trafficgenerators](https://github.com/DPMI/trafficgenerators) and plot graphs for the "Inter-arrival times percentiles" and also "Seq no. Vs Inter-arrival times".
 
 ## Steps
 
