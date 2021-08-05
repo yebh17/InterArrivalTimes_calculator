@@ -27,7 +27,7 @@ else
 fi
 
 # Check for Make installation
-if ! command -v makse &> /dev/null
+if ! command -v make &> /dev/null
 then
     echo ""
     echo "ERROR: Make is not available, please install Make with, 'sudo apt-get install build-essential'"
