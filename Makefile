@@ -39,4 +39,4 @@ clean:
 	for FILE in ${convSrc3_cerberus}; do rm $$FILE ; done
 
 #Goal for running all goals
-all: clean calculate percentile_plot
+all: clean calculate percentile_plot accuracy_plot

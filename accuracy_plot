@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 
-from matplotlib import mlab
 import matplotlib.pyplot as plt
-import numpy as np
 import glob
 import csv
 import os
+import pandas as pd
 
 print ("INFO: Now creating the accuracy graphs...\n")
 def graph_plot():
-    x = []
-    y = []
+    b = []
     myFiles = glob.glob('*.csv')
     a=0
     for i in range(len(myFiles)):
@@ -18,18 +16,16 @@ def graph_plot():
             plots = csv.reader(csvfile, delimiter=',')
             for row in plots:
                 #Time in us
-                x.append(row[0])
-                #packets in bits
-                y.append(row[1])
-
-        plt.scatter(x, y)
-        plt.xlabel('seq.no')
-        plt.ylabel('Inter-arrival times')
-        plt.savefig(f'{myFiles[a]}.png')
-        plt.locator_params(axis='y', nbins=5000)
-        plt.locator_params(axis='x', nbins=5000)
-        plt.clf()
-        a+=1
+                try:
+                    b.append([float(row[0]),float(row[1]),3])
+                except Exception:
+                    pass
+            df = pd.DataFrame(b,columns=['seq.no', 'Inter-arrival times', 'species'])
+            ax1 = df.plot.scatter(x='seq.no',y='Inter-arrival times',c='DarkBlue',style=['o', 'rx'], s=1)
+            plt.savefig(f'{myFiles[a]}_1.png')
+            plt.clf()
+            a+=1
+            b=[]
 os.chdir('convShaper2_cerberus')
 p=os.listdir(os.getcwd())
 c=0
