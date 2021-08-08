@@ -15,4 +15,4 @@ You can use `make clean` for cleaning all the generated files and get back a fre
 
 You can use `make help` if wanted to check all the different commands available.
 
-NOTE: This application only runs in linux
+NOTE: This application only runs in linux and also can take a bit time for executing and producing results since there are lot of data points and many files to create. The repo size after producing the results can be approximately 110M.

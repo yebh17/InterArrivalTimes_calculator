@@ -70,4 +70,4 @@ for i in range(len(p)):
     except FileNotFoundError:
         pass
     os.chdir('..')
-print("INFO: Done with the accuracy graphs, check them in the respective directories")
+print("INFO: Done with the accuracy graphs, check them in the respective directories\n")
