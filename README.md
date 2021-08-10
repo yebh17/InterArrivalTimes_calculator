@@ -1,4 +1,4 @@
-# Data Rates Calculator
+# Inter-arrival times Calculator
 
 ## About the application
 
