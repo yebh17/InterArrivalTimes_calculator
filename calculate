@@ -16,26 +16,21 @@ def convers():
         line=[i.split('\t',7)[7] for i in line]
         df=pd.DataFrame(line)
         df=df[0].str.strip('\n')
-        df.to_csv(f"results_{myFiles[a][:9]}.csv")
+        df.to_csv(f"arrival_results_{myFiles[a][:9]}.csv")
         
-        cols = list(pd.read_csv(f"results_{myFiles[a][:9]}.csv", nrows =1))
-        df = pd.read_csv(f"results_{myFiles[a][:9]}.csv",  usecols =[1])
+        cols = list(pd.read_csv(f"arrival_results_{myFiles[a][:9]}.csv", nrows =1))
+        df = pd.read_csv(f"arrival_results_{myFiles[a][:9]}.csv",  usecols =[1])
         difference = df.diff(axis=0)
         difference = difference*1000000
         difference = difference.fillna(0)
         difference = difference.round()
         difference = difference.astype('int64')
-        difference.to_csv(f"results_{myFiles[a][:9]}.csv")
-        f = open(f'results_{myFiles[a][:9]}.csv', 'r')
+        difference.to_csv(f"arrival_results_{myFiles[a][:9]}.csv")
+        f = open(f'arrival_results_{myFiles[a][:9]}.csv', 'r')
         reader = csv.reader(f)
         mylist = list(reader)
         bytes_to_bits=1024*8
         mylist[1]=[0,0,0,0]
-        # relative_time=0
-        # pkt1_arr_time=float(line[0])
-        # pkt1_inter_arr_time=pkt1_arr_time-relative_time
-        # pkt1_inter_arr_time=str(pkt1_inter_arr_time)
-        # mylist[1]=[0,pkt1_inter_arr_time[11:], bytes_to_bits, float(8192/int(pkt1_inter_arr_time[11:]))]
         f.close()
         i=2
         try:
@@ -47,9 +42,49 @@ def convers():
                 i+=1
         except Exception as e:
             pass
-        outfile=open(f'./results_{myFiles[a][:9]}.csv','w')
+        outfile=open(f'./arrival_results_{myFiles[a][:9]}.csv','w')
         writer=csv.writer(outfile)
         writer.writerows(mylist[1:])
+        a+=1
+def dep_convers():
+    myFiles = glob.glob('*.txt')
+    a=0
+    for i in range(len(myFiles)):
+        file=open(myFiles[a])
+        line=file.readlines()
+        line=line[10:]
+        line=[i.split('\t',7)[6] for i in line]
+        df=pd.DataFrame(line)
+        df=df[0].str.strip('\n')
+        df.to_csv(f"departure_results_{myFiles[a][:9]}.csv")
+        
+        cols = list(pd.read_csv(f"departure_results_{myFiles[a][:9]}.csv", nrows =1))
+        df = pd.read_csv(f"departure_results_{myFiles[a][:9]}.csv",  usecols =[1])
+        difference = df.diff(axis=0)
+        difference = difference*1000000
+        difference = difference.fillna(0)
+        difference = difference.round()
+        difference = difference.astype('int64')
+        difference.to_csv(f"departure_results_{myFiles[a][:9]}.csv")
+        f = open(f'departure_results_{myFiles[a][:9]}.csv', 'r')
+        reader = csv.reader(f)
+        mylist = list(reader)
+        bytes_to_bits=1024*8
+        mylist[1]=[0,0,0,0]
+        f.close()
+        i=2
+        try:
+            while True:
+                x=float(8192/int(mylist[i][1]))
+                h="{:.6f}".format(float(x))
+                mylist[i].append(str(bytes_to_bits))
+                mylist[i].append(str(h))
+                i+=1
+        except Exception as e:
+            pass
+        outfile=open(f'./departure_results_{myFiles[a][:9]}.csv','w')
+        writer=csv.writer(outfile)
+        writer.writerows(mylist[1:10000])
         a+=1
 os.chdir('convShaper2_cerberus')
 p=os.listdir()
@@ -59,6 +94,7 @@ for i in range(len(p)):
         os.chdir(p[c])
         c=c+1
         convers()
+        dep_convers()
     except NotADirectoryError:
         pass
     except FileNotFoundError:
@@ -74,6 +110,7 @@ for i in range(len(p)):
         os.chdir(p[d])
         d+=1
         convers()
+        dep_convers()
     except NotADirectoryError:
         pass
     except FileNotFoundError:
@@ -90,6 +127,7 @@ for i in range(len(p)):
         os.chdir(p[e])
         e+=1
         convers()
+        dep_convers()
     except NotADirectoryError:
         pass
     except FileNotFoundError:
