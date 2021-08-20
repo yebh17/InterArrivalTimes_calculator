@@ -1,4 +1,4 @@
-# Active-Measurements
+# Active-Measurements 1.0.0
 
 ## About the application
 
