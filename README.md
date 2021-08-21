@@ -1,4 +1,4 @@
-# Active-Measurements 1.0.0
+# Active-Testing (v1.0.0)
 
 ## About the application
 
@@ -6,12 +6,12 @@ A simple application to calculate the Inter-arrival and Inter-departure times fr
 
 ## Steps
 
-- `git clone https://github.com/yebh17/active-measurements.git`
-- `cd active-measurements`
+- `git clone https://github.com/yebh17/active-testing.git`
+- `cd active-testing`
 - `./initialize`
-- `make`
+- `make && make clean` (make clean cleans all the unwanted images that are created just for creating the final collaged images)
 
-You can use `make clean` for cleaning all the generated files and get back a fresh repo.
+You can use `make fresh` for cleaning all the generated files and get back a fresh repo.
 
 You can use `make help` if wanted to check all the different commands available.
 

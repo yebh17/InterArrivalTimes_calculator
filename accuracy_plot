@@ -9,6 +9,7 @@ import pandas as pd
 print ("INFO: Now creating the accuracy graphs...\n")
 def graph_plot():
     b = []
+    name=[]
     myFiles = glob.glob('*.csv')
     a=0
     for i in range(len(myFiles)):
@@ -23,7 +24,9 @@ def graph_plot():
             df = pd.DataFrame(b,columns=['seq.no', 'Inter-arrival times', 'species'])
 #            ax1 = df.plot.scatter(x='seq.no',y='Inter-arrival times',c='DarkBlue',style=['o', 'rx'], s=1)
             ax1 = df.plot(x='seq.no',y='Inter-arrival times')
-            plt.savefig(f'{myFiles[a]}.png')
+            name=myFiles[a].split('_')
+            plt.title(f"Accuracy_{name[0]}")
+            plt.savefig(f'{myFiles[a]}.abc.png')
             plt.clf()
             plt.close()
             a+=1
