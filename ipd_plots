@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+
+import matplotlib.pyplot as plt
+import glob
+import csv
+import os
+import pandas as pd
+import numpy as np
+import matplotlib.ticker as mtick
+
+print ("INFO: Now creating the accuracy graphs...\n")
+def graph_plot():
+    b = []
+    name=[]
+    myFiles = glob.glob('*.csv')
+    a=0
+    for i in range(len(myFiles)):
+        with open(myFiles[a],'r') as csvfile:
+            plots = csv.reader(csvfile, delimiter=',')
+            for row in plots:
+                try:
+                    freq=(len(next(zip(*plots))))
+                    l = np.arange(freq) / float(freq)
+                    l = l.astype(int)
+                    b.append([float(row[1]),l,3])
+                except Exception:
+                    pass
+            df = pd.DataFrame(b,columns=['% of Packets', 'Inter-Packet delay (msec)', 'species'])
+            ax1 = df.plot.scatter(x='% of Packets',y='Inter-Packet delay (msec)',c='DarkBlue',style=['o', 'rx'], s=1)
+            ax1 = df.plot(x='% of Packets',y='Inter-Packet delay (msec)')
+            name=myFiles[a].split('_')
+            plt.title(f"Inter_Packet_delay_Percentile_{name[0]}")
+            plt.savefig(f'{myFiles[a]}_ipd.plot.png')
+            plt.clf()
+            plt.close()
+            a+=1
+            b=[]
+os.chdir('convShaper2_cerberus')
+p=os.listdir(os.getcwd())
+c=0
+for i in range(len(p)):
+    try:
+        os.chdir(p[c])
+        c=c+1
+        graph_plot()
+    except NotADirectoryError:
+        pass
+    except FileNotFoundError:
+        pass
+    os.chdir('..')
+
+os.chdir('..')
+os.chdir('convShaper2_convSrc3')
+p=os.listdir(os.getcwd())
+d=0
+for i in range(len(p)):
+    try:
+        os.chdir(p[d])
+        d+=1
+        graph_plot()
+    except NotADirectoryError:
+        pass
+    except FileNotFoundError:
+        pass
+    os.chdir('..')
+
+os.chdir('..')
+os.chdir('convSrc3_cerberus')
+
+p=os.listdir(os.getcwd())
+e=0
+for i in range(len(p)):
+    try:
+        os.chdir(p[e])
+        e+=1
+        graph_plot()
+    except NotADirectoryError:
+        pass
+    except FileNotFoundError:
+        pass
+    os.chdir('..')
+print("INFO: Done with the accuracy graphs, check them in the respective directories\n")
