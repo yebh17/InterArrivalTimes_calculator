@@ -21,24 +21,21 @@ def convers():
         cols = list(pd.read_csv(f"arrival_results_{myFiles[a][:9]}.csv", nrows =1))
         df = pd.read_csv(f"arrival_results_{myFiles[a][:9]}.csv",  usecols =[1])
         difference = df.diff(axis=0)
-        difference = difference*1000000
-        difference = difference.fillna(0)
-        difference = difference.round()
-        difference = difference.astype('int64')
+        difference = difference*1000
+        difference = difference.round(2)
+        difference = difference.astype(float)
         difference.to_csv(f"arrival_results_{myFiles[a][:9]}.csv")
         f = open(f'arrival_results_{myFiles[a][:9]}.csv', 'r')
         reader = csv.reader(f)
         mylist = list(reader)
-        bytes_to_bits=1024*8
         mylist[1]=[0,0,0,0]
         f.close()
         i=2
         try:
             while True:
-                x=float(8192/int(mylist[i][1]))
-                h="{:.6f}".format(float(x))
-                mylist[i].append(str(bytes_to_bits))
-                mylist[i].append(str(h))
+                x = str(mylist[i][1])
+                mylist[i].append(str(1024))
+                mylist[i].append("1024 bytes / %s msec"%x)
                 i+=1
         except Exception as e:
             pass
@@ -61,24 +58,21 @@ def dep_convers():
         cols = list(pd.read_csv(f"departure_results_{myFiles[a][:9]}.csv", nrows =1))
         df = pd.read_csv(f"departure_results_{myFiles[a][:9]}.csv",  usecols =[1])
         difference = df.diff(axis=0)
-        difference = difference*1000000
-        difference = difference.fillna(0)
-        difference = difference.round()
-        difference = difference.astype('int64')
+        difference = difference*1000
+        difference = difference.round(2)
+        difference = difference.astype(float)
         difference.to_csv(f"departure_results_{myFiles[a][:9]}.csv")
         f = open(f'departure_results_{myFiles[a][:9]}.csv', 'r')
         reader = csv.reader(f)
         mylist = list(reader)
-        bytes_to_bits=1024*8
         mylist[1]=[0,0,0,0]
         f.close()
         i=2
         try:
             while True:
-                x=float(8192/int(mylist[i][1]))
-                h="{:.6f}".format(float(x))
-                mylist[i].append(str(bytes_to_bits))
-                mylist[i].append(str(h))
+                x = str(mylist[i][1])
+                mylist[i].append(str(1024))
+                mylist[i].append("1024 bytes / %s msec"%x)
                 i+=1
         except Exception as e:
             pass
@@ -134,4 +128,3 @@ for i in range(len(p)):
         pass
     os.chdir('..')
 print("INFO: Done with the calculations, check results in the respective directories\n")
-    

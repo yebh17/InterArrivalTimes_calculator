@@ -10,12 +10,12 @@ def collage():
     myFiles = glob.glob('*.txt')
     a=0
     for i in range(len(myFiles)):
-        image1=cv2.imread(f'arrival_results_{myFiles[a][:9]}.csv.abc.png')
-        image2=cv2.imread(f'arrival_results_{myFiles[a][:9]}.csv_percentile.abc.png')
-        image3=cv2.imread(f'departure_results_{myFiles[a][:9]}.csv.abc.png')
-        image4=cv2.imread(f'departure_results_{myFiles[a][:9]}.csv_percentile.abc.png')
-        Horizontal1=np.hstack([image1,image2])
-        Horizontal2=np.hstack([image3,image4])
+        image1=cv2.imread(f'arrival_results_{myFiles[a][:9]}.csv_ipd.plot.png')
+        image2=cv2.imread(f'arrival_results_{myFiles[a][:9]}.csv_cdf.plot.png')
+        image3=cv2.imread(f'departure_results_{myFiles[a][:9]}.csv_ipd.plot.png')
+        image4=cv2.imread(f'departure_results_{myFiles[a][:9]}.csv_cdf.plot.png')
+        Horizontal1=np.hstack([image1,image3])
+        Horizontal2=np.hstack([image2,image4])
         Vertical_attachment=np.vstack([Horizontal1,Horizontal2])
         cv2.imwrite(f"plots_{myFiles[a][:9]}.csv.png",Vertical_attachment)
         cv2.waitKey(1)

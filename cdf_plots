@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
+from matplotlib import mlab
 import matplotlib.pyplot as plt
-import glob
+import numpy as np
 import csv
+import glob
 import os
-import pandas as pd
 
-print ("INFO: Now creating the accuracy graphs...\n")
+print("INFO: Now creating the percentile graphs...\n")
+
 def graph_plot():
     b = []
     name=[]
@@ -16,21 +18,27 @@ def graph_plot():
         with open(myFiles[a],'r') as csvfile:
             plots = csv.reader(csvfile, delimiter=',')
             for row in plots:
-                #Time in us
                 try:
-                    b.append([float(row[0]),float(row[1]),3])
+                    #Time in msec
+                    b.append(float(row[1]))
                 except Exception:
                     pass
-            df = pd.DataFrame(b,columns=['seq.no', 'Inter-arrival times', 'species'])
-#            ax1 = df.plot.scatter(x='seq.no',y='Inter-arrival times',c='DarkBlue',style=['o', 'rx'], s=1)
-            ax1 = df.plot(x='seq.no',y='Inter-arrival times')
-            name=myFiles[a].split('_')
-            plt.title(f"Accuracy_{name[0]}")
-            plt.savefig(f'{myFiles[a]}.abc.png')
-            plt.clf()
-            plt.close()
-            a+=1
-            b=[]
+        
+        x = sorted(b)
+        freq=len(b)
+        y = np.arange(freq) / float(freq)
+        
+        plt.xlabel(f"Inter-Packet Delay (msec)")
+        plt.ylabel('CDF')
+
+        # plt.title('CDF of packet sizes')
+
+        plt.plot(x, y, color="red")
+        name=myFiles[a].split('_')
+        plt.title(f"CDF_{name[0]}")
+        plt.savefig(f'{myFiles[a]}_cdf.plot.png')
+        plt.clf()
+        a+=1
 os.chdir('convShaper2_cerberus')
 p=os.listdir(os.getcwd())
 c=0
@@ -75,4 +83,4 @@ for i in range(len(p)):
     except FileNotFoundError:
         pass
     os.chdir('..')
-print("INFO: Done with the accuracy graphs, check them in the respective directories\n")
+print("INFO: Done with the Percentile graphs, check them in the respective directories\n")
