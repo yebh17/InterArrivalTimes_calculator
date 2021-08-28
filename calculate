@@ -21,13 +21,13 @@ def convers():
         cols = list(pd.read_csv(f"arrival_results_{myFiles[a][:9]}.csv", nrows =1))
         df = pd.read_csv(f"arrival_results_{myFiles[a][:9]}.csv",  usecols =[1])
         difference = df.diff(axis=0)
-        # difference = difference*1000
-        difference = difference*1000000
-        difference = difference.fillna(0)
-        # difference = difference.round(2)
-        difference = difference.round()
-        # difference = difference.astype(float)
-        difference = difference.astype('int64')
+        difference = difference*1000
+        # difference = difference*1000000
+        # difference = difference.fillna(0)
+        difference = difference.round(2)
+        # difference = difference.round()
+        difference = difference.astype(float)
+        # difference = difference.astype('int64')
         difference.to_csv(f"arrival_results_{myFiles[a][:9]}.csv")
         f = open(f'arrival_results_{myFiles[a][:9]}.csv', 'r')
         reader = csv.reader(f)
@@ -62,18 +62,18 @@ def dep_convers():
         cols = list(pd.read_csv(f"departure_results_{myFiles[a][:9]}.csv", nrows =1))
         df = pd.read_csv(f"departure_results_{myFiles[a][:9]}.csv",  usecols =[1])
         difference = df.diff(axis=0)
-        # difference = difference*1000
-        difference = difference*1000000
-        difference = difference.fillna(0)
-        # difference = difference.round(2)
-        difference = difference.round()
-        # difference = difference.astype(float)
-        difference = difference.astype('int64')
+        difference = difference*1000
+        # difference = difference*1000000
+        # difference = difference.fillna(0)
+        difference = difference.round(2)
+        # difference = difference.round()
+        difference = difference.astype(float)
+        # difference = difference.astype('int64')
         difference.to_csv(f"departure_results_{myFiles[a][:9]}.csv")
         f = open(f'departure_results_{myFiles[a][:9]}.csv', 'r')
         reader = csv.reader(f)
         mylist = list(reader)
-        mylist[1]=[0,0,0,0]
+        mylist[1] = [0,0,0,0]
         f.close()
         i=2
         try:

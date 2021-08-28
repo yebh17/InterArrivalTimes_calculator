@@ -20,28 +20,28 @@ def graph_plot():
             plots = csv.reader(csvfile, delimiter=',')
             for row in plots:
                 try:
-                    b.append([float(row[1]),float(row[0]),4])
+                    b.append([float(row[0]),float(row[1]),4])
                     e.append(float(row[0]))
                 except Exception:
                     pass
+            b.pop(0)
+            e.pop(0)
             x = sorted(e)
             freq=len(e)
             y = np.arange(freq) / float(freq)
 
-            df = pd.DataFrame(b,columns=['seq.no', 'Inter-Packet delay (msec)', 'species'])
-            ax1 = df.plot.scatter(x='seq.no',y='Inter-Packet delay (msec)',c='DarkBlue',style=['o', 'rx'], s=1)
+            df = pd.DataFrame(b,columns=['seq.no', 'Inter-Packet_delay_(msec)', 'species'])
+            ax1 = df.plot.scatter(x='seq.no',y='Inter-Packet_delay_(msec)',c='DarkBlue',style=['o', 'rx'], s=1)
             
-            #TODO: Put inter packet delay times on X axis and 'y' array on Y axis
-            ax1 = df.plot(x='seq.no',y='Inter-Packet delay (msec)',color='Black')
+            ax1 = df.plot(x='seq.no',y='Inter-Packet_delay_(msec)',color='Black')
             ax1.ticklabel_format(style='sci',scilimits=(-3,4),axis='y')
             ax1.xaxis.major.formatter._useMathText = True
             for line in ax1.get_lines():
                 line.set_linewidth(0.1)
             
-            #TODO: put the 'y' array on Z axis and inter packet delay times on X axis
-            plt.plot(x, color="red")
+            # plt.plot(x, color="red")
             name=myFiles[a].split('_')
-            plt.title(f"Inter_Packet_delay_Percentile_{name[0]}")
+            plt.title(f"Inter_Packet_delay_variation_{name[0]}")
             plt.savefig(f'{myFiles[a]}_ipd.plot.png')
             plt.clf()
             plt.close()

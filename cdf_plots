@@ -23,6 +23,7 @@ def graph_plot():
                     b.append(float(row[1]))
                 except Exception:
                     pass
+        b.pop(0)
         
         x = sorted(b)
         freq=len(b)
