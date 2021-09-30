@@ -16,7 +16,7 @@ help:
 		@echo "make fresh" - cleans all the files, graph images. Simply gives you a clean repo.
 		@echo ""
 
-.PHONY: calculate cdf_plots ipd_plots sub_plots all
+.PHONY: calculate cdf_plots ipd_plots sub_plots ipd_plots_semilog all
 .SILENT: fresh clean
 
 .DEFAULT_GOAL := all
@@ -36,6 +36,10 @@ calculate:
 #Goal for final plots
 sub_plots:
 	@./sub_plots
+
+#Goal for plotting "seq no. Vs IAT's" and "seq no. Vs IDT's" with semilog type
+ipd_plots_semilog:
+	@./ipd_plots_semilog
 
 #Goal for deleting all temporarily created images
 convShaper2_cerberus_temp = $(filter-out ./convShaper2_cerberus/*/exclude_%,$(wildcard ./convShaper2_cerberus/*/*.plot.*))

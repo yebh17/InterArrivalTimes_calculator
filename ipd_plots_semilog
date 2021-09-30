@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+
+import matplotlib.pyplot as plt
+import glob
+import csv
+import os
+import pandas as pd
+import numpy as np
+import matplotlib.ticker as mtick
+
+print ("INFO: Now creating the accuracy graphs...\n")
+def graph_plot():
+    b = []
+    e=[]
+    name=[]
+    myFiles = glob.glob('*.csv')
+    a=0
+    for i in range(len(myFiles)):
+        with open(myFiles[a],'r') as csvfile:
+            plots = csv.reader(csvfile, delimiter=',')
+            for row in plots:
+                try:
+                    b.append([float(row[0]),float(row[1]),4])
+                    e.append(float(row[0]))
+                except Exception:
+                    pass
+            b.pop(0)
+            e.pop(0)
+            x = sorted(e)
+            freq=len(e)
+            y = np.arange(freq) / float(freq)
+
+            df = pd.DataFrame(b,columns=['seq.no', 'Inter-Packet_delay_(msec)', 'species'])
+            ax1 = df.plot.scatter(x='seq.no',y='Inter-Packet_delay_(msec)',c='DarkBlue',style=['o', 'rx'], s=1)
+            ax1 = df.plot(x='seq.no',y='Inter-Packet_delay_(msec)',color='Black',figsize=(15,10))
+            ax1.ticklabel_format(style='sci',scilimits=(-3,4),axis='y')
+            #x_ticks = np.append(ax1.get_xticks(), 1, 10000)
+            ax1.xaxis.major.formatter._useMathText = True
+            for line in ax1.get_lines():
+                line.set_linewidth(0.1)
+            #plt.figure(figsize=(15, 7))
+            #ax1.set_xticks(x_ticks)
+            ax1.locator_params('x',nbins=20)
+            # plt.plot(x, color="red")
+            plt.semilogx(x,y)
+            name=myFiles[a].split('_')
+            plt.title(f"Inter_Packet_delay_variation_{name[0]}")
+            plt.savefig(f'{myFiles[a]}_semilog_ipd.plot.png')
+            plt.clf()
+            plt.close()
+            a+=1
+            b=[]
+os.chdir('convShaper2_cerberus')
+p=os.listdir(os.getcwd())
+c=0
+for i in range(len(p)):
+    try:
+        os.chdir(p[c])
+        c=c+1
+        graph_plot()
+    except NotADirectoryError:
+        pass
+    except FileNotFoundError:
+        pass
+    os.chdir('..')
+
+os.chdir('..')
+os.chdir('convShaper2_convSrc3')
+p=os.listdir(os.getcwd())
+d=0
+for i in range(len(p)):
+    try:
+        os.chdir(p[d])
+        d+=1
+        graph_plot()
+    except NotADirectoryError:
+        pass
+    except FileNotFoundError:
+        pass
+    os.chdir('..')
+
+os.chdir('..')
+os.chdir('convSrc3_cerberus')
+
+p=os.listdir(os.getcwd())
+e=0
+for i in range(len(p)):
+    try:
+        os.chdir(p[e])
+        e+=1
+        graph_plot()
+    except NotADirectoryError:
+        pass
+    except FileNotFoundError:
+        pass
+    os.chdir('..')
+print("INFO: Done with the accuracy graphs, check them in the respective directories\n")
